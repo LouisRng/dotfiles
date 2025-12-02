@@ -23,8 +23,14 @@ return {
         LineNr = { bg = "none" },
         StatusLine = { bg = "none" },
         StatusLineNC = { bg = "none" },
-        VertSplit = { bg = "none" },
-        WinSeparator = { bg = "none" },
+        VertSplit = { bg = "none", fg = "#6c7086" }, -- catppuccin overlay0
+        WinSeparator = { bg = "none", fg = "#6c7086" },
+        NeoTreeWinSeparator = { bg = "none", fg = "#6c7086" },
+        NeoTreeVertSplit = { bg = "none", fg = "#6c7086" },
+        NeoTreeTabSeparatorInactive = { bg = "none", fg = "#6c7086" },
+        NeoTreeTabSeparatorActive = { bg = "none", fg = "#6c7086" },
+        NeoTreeTabInactive = { bg = "none" },
+        NeoTreeTabActive = { bg = "none" },
       },
     },
     icons = {
