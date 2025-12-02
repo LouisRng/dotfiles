@@ -1,0 +1,14 @@
+[opener]
+play = [
+	{ run = 'open "$@"', orphan = true, for = "unix" },
+]
+edit = [
+	{ run = 'nvim "$@"', block = true, for = "unix" },
+]
+open = [
+	{ run = 'open "$@"', desc = "Open" },
+]
+
+[prewiewer]
+max_width       = 1600
+max_height      = 1200
