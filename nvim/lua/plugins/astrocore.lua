@@ -62,6 +62,10 @@ return {
         ["]b"] = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
         ["[b"] = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
 
+        -- navigate buffer tabs (alternate keys)
+        ["<Tab>"] = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
+        ["<S-Tab>"] = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
+
         -- mappings seen under group name "Buffer"
         ["<Leader>bd"] = {
           function()
@@ -84,4 +88,29 @@ return {
       },
     },
   },
+  -- ✅ 新增这个钩子，放在 opts 同级，不要放在 opts 里面
+  config = function(_, opts)
+    -- 保留原 astrocore 的配置加载
+    require("astrocore").setup(opts)
+
+    -- 🔧 重新绑定 Python 文件中的 [[ / ]] ，覆盖默认 ftplugin/python.vim 的行为
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "python",
+      callback = function()
+        vim.keymap.set(
+          "n",
+          "]]",
+          function() Snacks.words.jump(vim.v.count1) end,
+          { buffer = true, desc = "Next LSP reference (override Python default)" }
+        )
+
+        vim.keymap.set(
+          "n",
+          "[[",
+          function() Snacks.words.jump(-vim.v.count1) end,
+          { buffer = true, desc = "Previous LSP reference (override Python default)" }
+        )
+      end,
+    })
+  end,
 }
